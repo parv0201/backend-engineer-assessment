@@ -98,9 +98,11 @@ public class AccountServiceImpl implements AccountService {
   private void updateExistingAccountObject(Account existingAccount, Account updatedDetails) {
     if (StringUtils.hasText(updatedDetails.getFirstName())) {
       existingAccount.setFirstName(updatedDetails.getFirstName());
-    } else if ((StringUtils.hasText(updatedDetails.getLastName()))) {
+    }
+    if ((StringUtils.hasText(updatedDetails.getLastName()))) {
       existingAccount.setLastName(updatedDetails.getLastName());
-    } else if ((StringUtils.hasText(updatedDetails.getEmail()))) {
+    }
+    if ((StringUtils.hasText(updatedDetails.getEmail()))) {
       existingAccount.setEmail(updatedDetails.getEmail());
     }
   }

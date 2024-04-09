@@ -34,7 +34,7 @@ public class CreateAccountWorkflowImpl implements CreateAccountWorkflow {
     logger.info(
         "successfully created account for email {} accountId {} providerType {} providerId {}",
         dbAccount.getEmail(),
-        account.getId(),
+        dbAccount.getId(),
         account.getProviderType(),
         account.getProviderId());
     return dbAccount;
