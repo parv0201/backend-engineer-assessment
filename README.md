@@ -113,3 +113,5 @@ In this file, the following services have been defined:
 - Current implementation does not handle temporal errors gracefully (temporal server being down, any unexpected errors). This can be improved to make the application fault-tolerant
 - Metrics can be exposed to measure performance of the application.
 
+### Code walk through Video
+https://youtu.be/wPtc0YrUJl8
