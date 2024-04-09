@@ -1,0 +1,38 @@
+summary: Update accounts
+parameters:
+  - in: path
+    name: accountId
+    description: accountId generated during account creation
+    example: UUID
+    required: true
+    schema:
+      type: string
+      format: uuid
+patch:
+  summary: Update an existing user account
+  operationId: updateUserAccount
+  description: Updates an existing user account with the given details.
+  tags:
+    - Accounts
+  requestBody:
+    description: User account details
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../schemas.yml#/components/schemas/updateAccount"
+  responses:
+    "200":
+      description: User account updated
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas.yml#/components/schemas/account"
+    "400":
+      $ref: "../../common/responses.yml#/components/responses/badRequest"
+    "401":
+      $ref: "../../common/responses.yml#/components/responses/unauthorized"
+    "403":
+      $ref: "../../common/responses.yml#/components/responses/forbidden"
+    "500":
+      $ref: "../../common/responses.yml#/components/responses/internalServerError"

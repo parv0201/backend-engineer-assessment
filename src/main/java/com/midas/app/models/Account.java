@@ -1,5 +1,6 @@
 package com.midas.app.models;
 
+import com.midas.generated.model.ProviderTypeEnumDto;
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -14,6 +15,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Builder
 @Entity
 @Table(name = "accounts")
+@EqualsAndHashCode(exclude = {"createdAt", "updatedAt"})
 public class Account {
   @Id
   @Column(name = "id")
@@ -28,6 +30,12 @@ public class Account {
 
   @Column(name = "email")
   private String email;
+
+  @Column(name = "provider_id")
+  private String providerId;
+
+  @Column(name = "provider_type")
+  private ProviderTypeEnumDto providerType;
 
   @Column(name = "created_at")
   @CreationTimestamp

@@ -13,4 +13,11 @@ public interface PaymentProvider {
    * @return Account
    */
   Account createAccount(CreateAccount details);
+
+  /**
+   * updateAccount updates an existing account in the payment provider.
+   *
+   * @param details is the details of the account to be updated.
+   */
+  void updateAccount(CreateAccount details, String providerId);
 }

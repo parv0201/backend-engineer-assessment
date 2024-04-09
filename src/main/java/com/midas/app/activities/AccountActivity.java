@@ -23,4 +23,12 @@ public interface AccountActivity {
    */
   @ActivityMethod
   Account createPaymentAccount(Account account);
+
+  /**
+   * updatePaymentAccount updates a payment account in payment provider system.
+   *
+   * @param account is the account to be updated
+   */
+  @ActivityMethod
+  void updatePaymentAccount(Account account);
 }

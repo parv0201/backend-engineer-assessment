@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: 'postgres:16.2'
+    image: 'postgres:latest'
     environment:
       - 'POSTGRES_DB=mydatabase'
       - 'POSTGRES_PASSWORD=secret'
@@ -20,3 +20,12 @@ services:
     image: temporalio/auto-setup:1.22.7
     ports:
       - 7233:7233
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - temporal
+      - postgres
+    labels:
+      org.springframework.boot.ignore: true

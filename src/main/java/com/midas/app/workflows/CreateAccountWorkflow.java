@@ -9,7 +9,7 @@ public interface CreateAccountWorkflow {
   String QUEUE_NAME = "create-account-workflow";
 
   /**
-   * createAccount creates a new account in the system or provider.
+   * createAccount creates a new account in the system and payment provider.
    *
    * @param details is the details of the account to be created.
    * @return Account

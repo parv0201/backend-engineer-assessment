@@ -6,7 +6,9 @@ import com.midas.app.services.AccountService;
 import com.midas.generated.api.AccountsApi;
 import com.midas.generated.model.AccountDto;
 import com.midas.generated.model.CreateAccountDto;
+import com.midas.generated.model.UpdateAccountDto;
 import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +39,7 @@ public class AccountController implements AccountsApi {
                 .firstName(createAccountDto.getFirstName())
                 .lastName(createAccountDto.getLastName())
                 .email(createAccountDto.getEmail())
+                .providerType(createAccountDto.getProviderType())
                 .build());
 
     return new ResponseEntity<>(Mapper.toAccountDto(account), HttpStatus.CREATED);
@@ -55,5 +58,26 @@ public class AccountController implements AccountsApi {
     var accountsDto = accounts.stream().map(Mapper::toAccountDto).toList();
 
     return new ResponseEntity<>(accountsDto, HttpStatus.OK);
+  }
+
+  /**
+   * PATCH /accounts/{accountId} : Update an existing user account Updates an existing user account
+   * details and updates the details to the designated payment provider as well
+   *
+   * @return Updated user account (status code 200)
+   */
+  @Override
+  public ResponseEntity<AccountDto> updateUserAccount(
+      UUID accountId, UpdateAccountDto updateAccountDto) {
+    logger.info("Updating account details for accountId {}", accountId);
+    var updatedAccount =
+        accountService.updateAccount(
+            Account.builder()
+                .id(accountId)
+                .firstName(updateAccountDto.getFirstName())
+                .lastName(updateAccountDto.getLastName())
+                .email(updateAccountDto.getEmail())
+                .build());
+    return new ResponseEntity<>(Mapper.toAccountDto(updatedAccount), HttpStatus.OK);
   }
 }
